@@ -1,0 +1,194 @@
+@import url("https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --backGroundColor: #333;
+  --borderColor: black;
+}
+body {
+  min-height: 100vh;
+  padding: 20px;
+  background-color: var(--backGroundColor);
+}
+h1 {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  font-family: "Zen Dots", cursive;
+  color: white;
+}
+#userData[data-visible="false"] {
+  display: none;
+}
+.getUserData {
+  max-width: 300px;
+  margin: 0 auto;
+}
+.getUserData table {
+  padding: 10px;
+  text-align: center;
+}
+
+.getUserData table thead {
+  background-color: black;
+  color: white;
+  font-family: "Zen Dots", cursive;
+}
+.getUserData table td {
+  padding: 10px 5px;
+}
+
+.getUserData table input {
+  outline: none;
+  width: 100%;
+  font-size: 15px;
+  text-indent: 10px;
+  border-radius: 10px;
+  padding: 5px 0;
+}
+.getUserData table button {
+  width: 100%;
+  padding: 5px 0;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-family: "Zen Dots", cursive;
+}
+#boardDisplay {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 1s ease;
+}
+#boardDisplay[data-visible="true"] {
+  height: auto;
+  opacity: 1;
+}
+.PlayerInfo {
+  width: 300px;
+  margin: 10px auto;
+  text-align: center;
+}
+.PlayerInfo table {
+  max-width: 100%;
+  border-collapse: collapse;
+  background-color: black;
+  color: white;
+}
+.PlayerInfo table tbody tr {
+  color: black;
+  background-color: white;
+}
+.PlayerInfo table thead tr th,
+.PlayerInfo table tbody tr td {
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-left: none;
+  border-top: none;
+}
+.PlayerInfo table thead tr:first-child th:first-child,
+.PlayerInfo table tbody tr:first-child td:first-child {
+  background-color: var(--backGroundColor);
+  border: none;
+}
+.PlayerInfo table tbody tr:last-child td:first-child,
+.PlayerInfo table tbody tr:nth-child(2) td:first-child {
+  background-color: black;
+  color: white;
+}
+#gameStatus {
+  transition: all 1s ease;
+}
+.boardGame {
+  max-width: 500px;
+  aspect-ratio: 1/1;
+  margin: 0 auto;
+  padding: 5px;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 5px solid var(--borderColor);
+}
+.box {
+  width: auto;
+  height: 166px;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.5s ease;
+  pointer-events: inherit;
+}
+@media (max-width: 500px) {
+  .boardGame {
+    max-width: 500px;
+    aspect-ratio: 1/0.1;
+  }
+  .box {
+    height: 100px;
+  }
+}
+.boardGame:hover > :not(:hover) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.boardGame .box:first-child {
+  border-radius: 10px 0 0 0;
+}
+.boardGame .box:nth-child(3) {
+  border-radius: 0 10px 0 0;
+}
+.boardGame .box:nth-child(7) {
+  border-radius: 0 0 0 10px;
+}
+.boardGame .box:last-child {
+  border-radius: 0 0 10px 0;
+}
+.boardGame .box:first-child,
+.boardGame .box:nth-child(2),
+.boardGame .box:nth-child(4),
+.boardGame .box:nth-child(5) {
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+}
+.boardGame .box:nth-child(3),
+.boardGame .box:nth-child(6) {
+  border-bottom: 2px solid black;
+}
+.boardGame .box:nth-child(7),
+.boardGame .box:nth-child(8) {
+  border-right: 2px solid black;
+}
+
+.circle {
+  background-image: url(./assets/cicle.jpeg);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.cross {
+  background-image: url(./assets/cross.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.btnReset {
+  max-width: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px auto;
+}
+.btnReset button {
+  width: 220px;
+  font-family: "Zen Dots", cursive;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: 900;
+}
+.pointerEvents {
+  pointer-events: none;
+}
