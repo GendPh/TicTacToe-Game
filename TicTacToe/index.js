@@ -145,6 +145,8 @@ function checkWinCondition(playerWin, playerPoints, pointFor, playerName) {
       playerTwoPoints++;
       pointFor.text(playerTwoPoints);
     }
+    showWinLine($("#lineBoxOne"), $("#lineBoxTwo"), $("#lineBoxThree"), "line-horizontal");
+    changeBorderColor($(".boardGame .box:nth-child(1)"), $(".boardGame .box:nth-child(2)"), $(".boardGame .box:nth-child(3)"), "green");
     gameOn = false;
   } else if (playerWin[3].box === true && playerWin[4].box === true && playerWin[5].box === true) {
     $("#gameStatus").text(playerName + " won");
@@ -156,6 +158,8 @@ function checkWinCondition(playerWin, playerPoints, pointFor, playerName) {
       playerTwoPoints++;
       pointFor.text(playerTwoPoints);
     }
+    showWinLine($("#lineBoxFour"), $("#lineBoxFive"), $("#lineBoxSix"), "line-horizontal");
+    changeBorderColor($(".boardGame .box:nth-child(4)"), $(".boardGame .box:nth-child(5)"), $(".boardGame .box:nth-child(6)"), "green");
     gameOn = false;
   } else if (playerWin[6].box === true && playerWin[7].box === true && playerWin[8].box === true) {
     $("#gameStatus").text(playerName + " won");
@@ -167,6 +171,8 @@ function checkWinCondition(playerWin, playerPoints, pointFor, playerName) {
       playerTwoPoints++;
       pointFor.text(playerTwoPoints);
     }
+    showWinLine($("#lineBoxSeven"), $("#lineBoxEight"), $("#lineBoxNine"), "line-horizontal");
+    changeBorderColor($(".boardGame .box:nth-child(7)"), $(".boardGame .box:nth-child(8)"), $(".boardGame .box:nth-child(9)"), "green");
     gameOn = false;
   } else if (playerWin[0].box === true && playerWin[3].box === true && playerWin[6].box === true) {
     $("#gameStatus").text(playerName + " won");
@@ -178,6 +184,8 @@ function checkWinCondition(playerWin, playerPoints, pointFor, playerName) {
       playerTwoPoints++;
       pointFor.text(playerTwoPoints);
     }
+    showWinLine($("#lineBoxOne"), $("#lineBoxFour"), $("#lineBoxSeven"), "line-Vertical");
+    changeBorderColor($(".boardGame .box:nth-child(1)"), $(".boardGame .box:nth-child(4)"), $(".boardGame .box:nth-child(7)"), "green");
     gameOn = false;
   } else if (playerWin[1].box === true && playerWin[4].box === true && playerWin[7].box === true) {
     $("#gameStatus").text(playerName + " won");
@@ -189,6 +197,8 @@ function checkWinCondition(playerWin, playerPoints, pointFor, playerName) {
       playerTwoPoints++;
       pointFor.text(playerTwoPoints);
     }
+    showWinLine($("#lineBoxTwo"), $("#lineBoxFive"), $("#lineBoxEight"), "line-Vertical");
+    changeBorderColor($(".boardGame .box:nth-child(2)"), $(".boardGame .box:nth-child(5)"), $(".boardGame .box:nth-child(8)"), "green");
     gameOn = false;
   } else if (playerWin[2].box === true && playerWin[5].box === true && playerWin[8].box === true) {
     $("#gameStatus").text(playerName + " won");
@@ -200,6 +210,8 @@ function checkWinCondition(playerWin, playerPoints, pointFor, playerName) {
       playerTwoPoints++;
       pointFor.text(playerTwoPoints);
     }
+    showWinLine($("#lineBoxThree"), $("#lineBoxSix"), $("#lineBoxNine"), "line-Vertical");
+    changeBorderColor($(".boardGame .box:nth-child(3)"), $(".boardGame .box:nth-child(6)"), $(".boardGame .box:nth-child(9)"), "green");
     gameOn = false;
   } else if (playerWin[0].box === true && playerWin[4].box === true && playerWin[8].box === true) {
     $("#gameStatus").text(playerName + " won");
@@ -211,6 +223,8 @@ function checkWinCondition(playerWin, playerPoints, pointFor, playerName) {
       playerTwoPoints++;
       pointFor.text(playerTwoPoints);
     }
+    showWinLine($("#lineBoxOne"), $("#lineBoxFive"), $("#lineBoxNine"), "line-PerpendicularLR");
+    changeBorderColor($(".boardGame .box:nth-child(1)"), $(".boardGame .box:nth-child(5)"), $(".boardGame .box:nth-child(9)"), "green");
     gameOn = false;
   } else if (playerWin[2].box === true && playerWin[4].box === true && playerWin[6].box === true) {
     $("#gameStatus").text(playerName + " won");
@@ -222,11 +236,23 @@ function checkWinCondition(playerWin, playerPoints, pointFor, playerName) {
       playerTwoPoints++;
       pointFor.text(playerTwoPoints);
     }
+    showWinLine($("#lineBoxThree"), $("#lineBoxFive"), $("#lineBoxSeven"), "line-PerpendicularRL");
+    changeBorderColor($(".boardGame .box:nth-child(3)"), $(".boardGame .box:nth-child(5)"), $(".boardGame .box:nth-child(7)"), "green")
     gameOn = false;
   }
 }
-
-
+function changeBorderColor(boxOne, boxTwo, boxThree, color) {
+  boxOne.css("border-color", color);
+  boxTwo.css("border-color", color);
+  boxThree.css("border-color", color);
+}
+function showWinLine(boxOne, boxTwo, boxThree, lineDirection) {
+  boxOne.addClass(lineDirection);
+  boxTwo.addClass(lineDirection);
+  boxTwo.css("animation-delay", " 0.3s");
+  boxThree.addClass(lineDirection);
+  boxThree.css("animation-delay", " 0.5s");
+}
 function playerClick(box) {
   let id = $(box).attr("id");
   if (playerMove % 2 == 0) {
@@ -308,6 +334,16 @@ $("#resetGameBtn").click(function () {
     boxPlayerTwoConfirmed[i].box = false;
   }
   $("#gameStatusLine").css("background-color", "inherit");
+  changeBorderColor($(".boardGame .box"), $(".boardGame .box"), $(".boardGame .box"), "darkblue");
+
+  const boardLines = $(".line");
+
+  for (let i = 0; i < boardLines.length; i++) {
+    boardLines[i].classList.remove("line-Vertical");
+    boardLines[i].classList.remove("line-horizontal");
+    boardLines[i].classList.remove("line-PerpendicularRL");
+    boardLines[i].classList.remove("line-PerpendicularLR");
+  }
 })
 
 $("#resetPointsBtn").click(function () {
